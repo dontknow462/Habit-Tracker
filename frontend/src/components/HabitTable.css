@@ -1,0 +1,13 @@
+/* HabitTable.css */
+
+.days {
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+  }
+  
+  .days input {
+    margin: 5px; /* Add some space between each input */
+    padding: 10px; /* Adjust padding for better appearance */
+    border: 1px solid #ccc; /* Add a border for each input */
+  }
+  
