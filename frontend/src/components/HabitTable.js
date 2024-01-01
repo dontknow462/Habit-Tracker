@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './HabitTable.css'
 
+// Dont forget to put documentation on your code cuz I dont understand my own code LOLLLL
+
 function HabitTable() {
 
   const today = new Date();
@@ -9,7 +11,8 @@ function HabitTable() {
 
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
-  const [dateArray, setDateArray] = useState([])
+  const [dateArray, setDateArray] = useState([]);
+  const [addHabit, setAddHabit]=useState('');
 
 
   function getCorrectDates(month, year) {
@@ -28,6 +31,7 @@ function HabitTable() {
 
 
 
+
   return (
     <div>
 
@@ -39,10 +43,15 @@ function HabitTable() {
 
       <div>
         <h1>Days</h1>
+        <input placeholder='add habit' onChange={()}/>
         <div className='days'>
-          {dateArray.map(item => (
+          {dateArray.map((key, item) => (
+            <div>
+            <input disabled key={key} placeholder={item} />
+            <input disabled placeholder={key} />
 
-            <input disabled placeholder={item} />
+            </div>
+
           ))}
         </div>
 
