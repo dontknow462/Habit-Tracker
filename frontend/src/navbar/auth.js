@@ -11,16 +11,16 @@ function Auth() {
     }
     return (
         <>
-            <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">Home</Link>
+            <nav >
+                <ul >
+                    <li >
+                        <Link  to="/">Home</Link>
                     </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                    <li >
+                        <Link  to="/dashboard">Dashboard</Link>
                     </li>
-                    <li className="nav-item">
-                        <span role="button" className="nav-link" onClick={logoutUser}>Logout</span>
+                    <li >
+                        <span role="button"  onClick={logoutUser}>Logout</span>
                     </li>
 
                 </ul>

@@ -6,16 +6,16 @@ import Register from '../components/register';
 function Guest() {
     return (
         <>
-            <nav className="">
-                <ul className="">
-                    <li className="">
-                        <Link className="" to="/">Home</Link>
+            <nav >
+                <ul >
+                    <li >
+                        <Link  to="/">Home</Link>
                     </li>
-                    <li className="">
-                        <Link className="" to="/login">Login</Link>
+                    <li >
+                        <Link  to="/login">Login</Link>
                     </li>
-                    <li className="">
-                        <Link className="" to="/register">Register</Link>
+                    <li >
+                        <Link  to="/register">Register</Link>
                     </li>
 
                 </ul>
