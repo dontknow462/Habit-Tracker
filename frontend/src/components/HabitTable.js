@@ -1,88 +1,127 @@
 import React, { useState } from 'react';
-import './HabitTable.css';
 
-function HabitTable() {
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
-  const [dateArray, setDateArray] = useState([]);
-  const [dailyHabits, setDailyHabits] = useState([]);
-  const [addHabit, setAddHabit] = useState('');
-  const [habitpDate, setHabitpDate]=useState([]);
-  const [habitValue, setHabitValue]=useState('')
-  
+const HabitForm = () => {
+  const [formFields, setFormFields] = useState([
+    {
+      email: '',
+      year: '',
+      month: '',
+      habits: [
+        { day: '', name: '', value: '' },
+      ],
+    },
+  ]);
 
+  const handleInputChange = (index, field, value) => {
+    const updatedFormFields = [...formFields];
+    updatedFormFields[index][field] = value;
+    setFormFields(updatedFormFields);
+  };
 
-  function addHabits() {
-    if (addHabit.trim() !== '') {
-      const updatedHabits = [...dailyHabits];
-      updatedHabits.push(addHabit);
-      setDailyHabits(updatedHabits);
-      setAddHabit('');
-    }
-  }
+  const handleHabitInputChange = (index, habitIndex, field, value) => {
+    const updatedFormFields = [...formFields];
+    updatedFormFields[index].habits[habitIndex][field] = value;
+    setFormFields(updatedFormFields);
+  };
 
-  function getCorrectDates(month, year) {
-    const numDays = new Date(year, month, 0).getDate();
-    const daysArray = [];
+  const handleAddForm = () => {
+    setFormFields([...formFields, { email: '', year: '', month: '', habits: [{ day: '', name: '', value: '' }] }]);
+  };
 
-    for (let i = 0; i < numDays; i++) {
-      daysArray[i] = i + 1;
-    }
+  const handleRemoveForm = (index) => {
+    const updatedFormFields = [...formFields];
+    updatedFormFields.splice(index, 1);
+    setFormFields(updatedFormFields);
+  };
 
-    return daysArray;
-  }
+  const handleFormSubmit = async (e, index) => {
+    e.preventDefault();
 
-  function handleDates() {
-    setDateArray(getCorrectDates(month, year));
-  }
+    // try {
+    //   const response = await fetch('your-backend-endpoint', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+       console.log( JSON.stringify(formFields[index]))
+      // });
 
-  function habitDetails(index, habit, value) {
-    console.log(index + " " + habit + " " + value);
-  }
-
-  function handleHabitpDate(day, habit){
-
-    const newHabitpDate = {day, habit, value:habitValue}
-    
-    setHabitpDate((preHabitpDate)=>[...preHabitpDate,newHabitpDate ])
-    setHabitValue('');
-    console.log(habitpDate);
-
-  }
-
+    //   if (response.ok) {
+    //     // Handle successful response
+    //     console.log('Data sent successfully');
+    //   } else {
+    //     // Handle error response
+    //     console.error('Error sending data');
+    //   }
+    // } catch (error) {
+    //   // Handle fetch error
+    //   console.error('Fetch error:', error);
+    // }
+  };
 
   return (
     <div>
-      <div className='select-dates'>
-        <input placeholder='month' onChange={(e) => setMonth(e.target.value)} />
-        <input placeholder='year' onChange={(e) => setYear(e.target.value)} />
-        <button onClick={handleDates}>Submit</button>
-      </div>
+      {formFields.map((form, index) => (
+        <form key={index} onSubmit={(e) => handleFormSubmit(e, index)}>
+          <label>Email:</label>
+          <input
+            type="text"
+            value={form.email}
+            onChange={(e) => handleInputChange(index, 'email', e.target.value)}
+          />
 
-      <div>
+          <label>Year:</label>
+          <input
+            type="text"
+            value={form.year}
+            onChange={(e) => handleInputChange(index, 'year', e.target.value)}
+          />
 
-        <div>
-          <input placeholder='add habit' value={addHabit} onChange={(e) => setAddHabit(e.target.value)} />
-          <button onClick={addHabits}>Add</button>
-        </div>
+          <label>Month:</label>
+          <input
+            type="text"
+            value={form.month}
+            onChange={(e) => handleInputChange(index, 'month', e.target.value)}
+          />
 
-        <div className='days'>
-          <div className='daysCont'><h1>Days</h1>
-            {dailyHabits.map((e) => (<h2 className='headers'>{e}</h2>))}</div>
-          {dateArray.map((day) => (
-            <div key={day} className='habNbtn'>
-              <input disabled placeholder={day} />
-              {dailyHabits.map((habit, index) => (
-                <div >  <input key={index} placeholder={habit} onChange={(e) => setHabitValue(e.target.value)} /> 
-                <button onClick={()=>handleHabitpDate(day,habit)}>submit</button>
-                </div>
-              ))}
+          <label>Habits:</label>
+          {form.habits.map((habit, habitIndex) => (
+            <div key={habitIndex}>
+              <input
+                type="text"
+                placeholder={`Day ${habit.day}`}
+                value={habit.day}
+                onChange={(e) => handleHabitInputChange(index, habitIndex, 'day', e.target.value)}
+              />
+
+              <input
+                type="text"
+                placeholder="Habit Name"
+                value={habit.name}
+                onChange={(e) => handleHabitInputChange(index, habitIndex, 'name', e.target.value)}
+              />
+
+              <input
+                type="text"
+                placeholder="Habit Value"
+                value={habit.value}
+                onChange={(e) => handleHabitInputChange(index, habitIndex, 'value', e.target.value)}
+              />
             </div>
           ))}
-        </div>
-      </div>
+
+          <button type="submit">Submit Form {index + 1}</button>
+          <button type="button" onClick={() => handleRemoveForm(index)}>
+            Remove Form {index + 1}
+          </button>
+        </form>
+      ))}
+
+      <button type="button" onClick={handleAddForm}>
+        Add Form
+      </button>
     </div>
   );
-}
+};
 
-export default HabitTable;
+export default HabitForm;
