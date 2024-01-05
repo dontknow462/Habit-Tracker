@@ -2,6 +2,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Home from '../components/home';
 import Dashboard from '../components/dashboard';
 import AuthUser from '../components/AuthUser';
+import ShowHabits from '../components/showHabits';
 function Auth() {
     const {token,logout} = AuthUser();
     const logoutUser = () => {
@@ -20,6 +21,9 @@ function Auth() {
                         <Link  to="/dashboard">Dashboard</Link>
                     </li>
                     <li >
+                        <Link  to="/showHabits">Show Habits</Link>
+                    </li>
+                    <li >
                         <span role="button"  onClick={logoutUser}>Logout</span>
                     </li>
 
@@ -30,6 +34,7 @@ function Auth() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/showHabits" element={<ShowHabits/>}/>
                 </Routes>
             </div>
         </>

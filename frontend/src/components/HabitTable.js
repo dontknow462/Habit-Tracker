@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 
 const HabitForm = () => {
+
+
   const [formFields, setFormFields] = useState([
     {
       email: '',
       year: '',
       month: '',
       habits: [
-        { day: '', name: '', value: '' },
+        { day: '', Habitname: '', value: '' },
       ],
     },
   ]);
@@ -92,7 +94,7 @@ const HabitForm = () => {
                 placeholder={`Day ${habit.day}`}
                 value={habit.day}
                 onChange={(e) => handleHabitInputChange(index, habitIndex, 'day', e.target.value)}
-              />
+                />
 
               <input
                 type="text"
