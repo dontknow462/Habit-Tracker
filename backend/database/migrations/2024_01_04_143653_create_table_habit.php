@@ -15,13 +15,10 @@ class CreateTableHabit extends Migration
     {
         Schema::create('table_habit', function (Blueprint $table) {
             $table->id();
-            $table->string('year');
-            $table->string('month');
-            $table->string('day');
+
             $table->string('habitName');
-            $table->string('value');
-            $table->string('email');
-            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
+
+            $table->foreign('user_id')->constrained();
 
 
 

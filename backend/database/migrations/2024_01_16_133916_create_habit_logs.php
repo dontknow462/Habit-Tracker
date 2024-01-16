@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Doesthisfuckignwork extends Migration
+class CreateHabitLogs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class Doesthisfuckignwork extends Migration
      */
     public function up()
     {
-        Schema::create('doesthisfuckingwork', function (Blueprint $table) {
+        Schema::create('habit_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('habit_id')->constrained();
+            $table->string('date');          // replace string with date later when comfortable 
+            $table->string('completed');     // ->dedault(false); replace string with boolean later
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -28,6 +29,6 @@ class Doesthisfuckignwork extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('habit_logs');
     }
 }
