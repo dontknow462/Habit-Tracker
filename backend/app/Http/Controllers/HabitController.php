@@ -8,7 +8,6 @@ use App\Models\Habit;
 use App\Models\HabitLog;
 
 
-
 class HabitController extends Controller
 {
     
@@ -22,12 +21,12 @@ class HabitController extends Controller
 
     public function createAndLog(Request $request)
     {
-            $request->validate([
-                'user_id'=> 'required|string', //'required|exists:users_id'
-                'habitName'=> 'required|string',
-                'date'=>'required|string', //'required|date'
-                'completed'=>'required|string' //'required|boolean'
-            ]);
+            // $request->validate([
+            //     'user_id'=> 'string', //'required|exists:users_id'
+            //     'habitName'=> 'string',
+            //     'date'=>'string', //'required|date'
+            //     'completed'=>'string' //'required|boolean'
+            // ]);
         
         $user = User::findOrFail($request->user_id);
         
@@ -39,9 +38,12 @@ class HabitController extends Controller
             'date'=> $request->date,
             'completed'=>$request->completed
         ]);
+
+        return response()->json(['message' => 'Habit created and logged successfully'], 201);
+
     }
 
  
-
+    
 
 }

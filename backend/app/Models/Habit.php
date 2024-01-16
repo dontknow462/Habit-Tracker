@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use backend\app\Models\HabitLog;
+use backend\app\Models\User;
 
 class Habit extends Model
 {
