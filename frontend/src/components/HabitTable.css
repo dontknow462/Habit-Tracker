@@ -1,13 +1,27 @@
-/* HabitTable.css */
+
 
 .days {
     display: flex;
-    flex-direction: column; /* Align items vertically */
+    flex-direction: column; 
   }
   
   .days input {
-    margin: 5px; /* Add some space between each input */
-    padding: 10px; /* Adjust padding for better appearance */
-    border: 1px solid #ccc; /* Add a border for each input */
+    margin: 5px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
   }
-  
+  .daysCont {
+    display: flex;
+    /* justify-content: left; */
+    align-items: center;
+    background-color: yellow;
+    padding: 10px;
+  }
+
+  .headers{
+    margin-left: 50px;
+  }
+
+  .habNbtn{
+    display: flex;
+  }

@@ -8,22 +8,17 @@ import Auth from './navbar/auth';
 import HabitTable from './components/HabitTable.js';
 // frontend/src/components/AuthUser.js
 
-// function App() {
-//   const {getToken} = AuthUser();
-//   if(!getToken()){
-//     return <Guest/>
-//   }
-//   return (
-//       <Auth />
-//   );
-// }
-
-
-
 function App() {
+  const {getToken} = AuthUser();
+  if(!getToken()){
+    return <Guest/>
+  }
   return (
-    <div><HabitTable/></div>
-  )
+      <Auth />
+  );
 }
+
+
+
 
 export default App;

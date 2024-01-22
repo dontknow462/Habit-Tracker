@@ -2,6 +2,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Home from '../components/home';
 import Dashboard from '../components/dashboard';
 import AuthUser from '../components/AuthUser';
+import ShowHabits from '../components/showHabits';
 function Auth() {
     const {token,logout} = AuthUser();
     const logoutUser = () => {
@@ -11,16 +12,19 @@ function Auth() {
     }
     return (
         <>
-            <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">Home</Link>
+            <nav >
+                <ul >
+                    <li >
+                        <Link  to="/">Home</Link>
                     </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                    <li >
+                        <Link  to="/dashboard">Dashboard</Link>
                     </li>
-                    <li className="nav-item">
-                        <span role="button" className="nav-link" onClick={logoutUser}>Logout</span>
+                    <li >
+                        <Link  to="/showHabits">Show Habits</Link>
+                    </li>
+                    <li >
+                        <span role="button"  onClick={logoutUser}>Logout</span>
                     </li>
 
                 </ul>
@@ -30,6 +34,7 @@ function Auth() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/showHabits" element={<ShowHabits/>}/>
                 </Routes>
             </div>
         </>

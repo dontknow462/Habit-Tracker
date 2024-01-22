@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Doesthisfuckignwork extends Migration
+class CreateTableHabit extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,18 @@ class Doesthisfuckignwork extends Migration
      */
     public function up()
     {
-        Schema::create('doesthisfuckingwork', function (Blueprint $table) {
+        Schema::create('table_habit', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+
+            $table->string('habitName');
+
+            $table->unsignedBigInteger('user_id'); // Add this line to create the 'user_id' column
+            $table->foreign('user_id')->references('id')->on('users'); // Ad
+
+
+
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -28,6 +34,6 @@ class Doesthisfuckignwork extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('table_habit');
     }
 }
