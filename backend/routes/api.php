@@ -30,5 +30,5 @@ Route::group(['middleware'=>'api'],function(){
     Route::post('me', [AuthController::class,'me']);
     Route::post('habits', [HabitController::class,'createAndLog']);
 
-
 });
+

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Habit;
+
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -18,6 +20,8 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
+    protected $table='users'; 
+
     protected $fillable = [
         'name',
         'email',
@@ -57,8 +61,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    // public function habits()
-    // {
-    //     return $this->hasMany(Habit::class);
-    // }
+    public function habits()
+    {
+        return $this->hasMany(Habit::class);
+    }
 }

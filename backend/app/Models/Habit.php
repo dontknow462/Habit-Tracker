@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use backend\app\Models\HabitLog;
-use backend\app\Models\User;
+use App\Models\User;
+use App\Models\HabitLog;
 
 class Habit extends Model
 {
@@ -16,7 +16,7 @@ class Habit extends Model
     protected $fillable = [
         
        'user_id',
-       'habitName', 
+       'habitName'
        
     
     ];

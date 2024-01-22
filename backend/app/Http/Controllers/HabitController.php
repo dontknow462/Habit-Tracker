@@ -6,44 +6,40 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Habit;
 use App\Models\HabitLog;
-
+use Illuminate\Support\Facades\Log;
 
 class HabitController extends Controller
 {
-    
-
     public function index()
     {
-        $habits = Habit::all(); 
+        // $habits = Habit::all(); 
+        
         return response()->json($habits);
-    }
+        // Log::info(response()->json($habits));
 
+    }
 
     public function createAndLog(Request $request)
     {
-            // $request->validate([
-            //     'user_id'=> 'string', //'required|exists:users_id'
-            //     'habitName'=> 'string',
-            //     'date'=>'string', //'required|date'
-            //     'completed'=>'string' //'required|boolean'
-            // ]);
-        
-        $user = User::findOrFail($request->user_id);
-        
+        // Log::info($request->all()['habit']['email']);
+        // Log::info($request->all()['habit']['habitName']);
+        // Log::info($request->all()['habit']['date']);
+        // Log::info($request->all()['habit']['completed']);
+
+
+
+        $userEmail = $request->all()['habit']['email'];
+        $user = User::where('email', $userEmail)->firstOrFail();
+
         $habit = $user->habits()->create([
-            'habitName'=>$request->name
+            'habitName' => $request->all()['habit']['habitName']
         ]);
 
         $habit->logs()->create([
-            'date'=> $request->date,
-            'completed'=>$request->completed
+            'date' => $request->all()['habit']['date'],
+            'completed' => $request->all()['habit']['completed']
         ]);
 
         return response()->json(['message' => 'Habit created and logged successfully'], 201);
-
     }
-
- 
-    
-
 }
