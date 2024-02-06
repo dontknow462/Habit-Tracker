@@ -3,6 +3,7 @@ import Home from '../components/home';
 import Dashboard from '../components/dashboard';
 import AuthUser from '../components/AuthUser';
 import ShowHabits from '../components/showHabits';
+import Thome from '../components/Thome';
 function Auth() {
     const {token,logout} = AuthUser();
     const logoutUser = () => {
@@ -26,6 +27,9 @@ function Auth() {
                     <li >
                         <span role="button"  onClick={logoutUser}>Logout</span>
                     </li>
+                    <li >
+                        <Link  to="/tHome">tHOME</Link>
+                    </li>
 
                 </ul>
 
@@ -35,6 +39,9 @@ function Auth() {
                     <Route path="/" element={<Home />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/showHabits" element={<ShowHabits/>}/>
+                    <Route path="/tHome" element={<Thome/>}/>
+
+
                 </Routes>
             </div>
         </>
