@@ -65,6 +65,18 @@ class HabitController extends Controller
 
 
 
+    public function update ($id)    // this doesnt work, working on this 
+    {
+        $newhabit = Habit::where('id', $habitId);
+
+        $newhabit ->habitName = input('habit.habitName');   /// this 
+
+
+
+    }
+
+
+
     public function destroy($habitId)
     {
         $habit = Habit::where('id', $habitId);
