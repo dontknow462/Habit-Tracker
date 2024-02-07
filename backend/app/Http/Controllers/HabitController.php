@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Habit;
 use App\Models\HabitLog;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class HabitController extends Controller
 {
@@ -17,6 +18,17 @@ class HabitController extends Controller
         return response()->json($habits);
         // Log::info(response()->json($habits));
 
+    }
+
+    public function getUserHabits($userId)
+    {
+        $user = User::where('id', $userId)->firstOrFail();
+        $habits= $user->habits()
+        ->select('id', 'user_id', 'habitName')
+        ->with('logs:id,habit_id,date,completed,created_at,updated_at')
+        ->get();
+
+        return response()->json($habits);
     }
 
     public function createAndLog(Request $request)

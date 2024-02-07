@@ -29,6 +29,7 @@ Route::group(['middleware'=>'api'],function(){
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
     Route::post('habits', [HabitController::class,'createAndLog']);
+    Route::get('/users/{userId}/habits', [HabitController::class, 'getUserHabits']);
 
 });
 
