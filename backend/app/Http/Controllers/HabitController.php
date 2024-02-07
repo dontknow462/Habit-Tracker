@@ -38,6 +38,14 @@ class HabitController extends Controller
         
        $currentDate = Carbon::now()->format('Y-m-d');
 
+       $habitName= $request->input('habit.habitName');
+    //    dd($habitName);                               // dd() here doesnt work because I am not sending data instead receiving and posting
+       $exitingHabit = Habit::where('habitName', $habitName)->first();
+
+        if($exitingHabit){
+            return response()->json(['message'=> "HabitName '$habitName' already exists"], 409);
+        }
+
 
        
         $userEmail = $request->all()['habit']['email'];
