@@ -19,7 +19,8 @@ class CreateTableHabit extends Migration
             $table->string('habitName');
 
             $table->unsignedBigInteger('user_id'); // Add this line to create the 'user_id' column
-            $table->foreign('user_id')->references('id')->on('users'); // Ad
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');; // //without cascade, it doesnt let me delete its parent 
+
 
 
 

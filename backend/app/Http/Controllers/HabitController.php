@@ -62,4 +62,16 @@ class HabitController extends Controller
 
         return response()->json(['message' => 'Habit created and logged successfully'], 201);
     }
+
+
+
+    public function destroy($habitId)
+    {
+        $habit = Habit::where('id', $habitId);
+
+        $habit-> delete();
+
+        return response()->json(['message'=>"habit 'habit' deleted successfully"], 200);
+
+    }
 }

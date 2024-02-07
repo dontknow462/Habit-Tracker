@@ -30,6 +30,7 @@ Route::group(['middleware'=>'api'],function(){
     Route::post('me', [AuthController::class,'me']);
     Route::post('habits', [HabitController::class,'createAndLog']);
     Route::get('/users/{userId}/habits', [HabitController::class, 'getUserHabits']);
+    Route::delete('/habits/{habitId}', [HabitController::class, 'destroy']);
 
 });
 
