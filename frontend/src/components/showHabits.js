@@ -15,8 +15,7 @@ function ShowHabits() {  // Capitalized component name
 
     {
       email: "krista.gutmann@example.com", 
-      habitName: "meditation",
-      date: "12-12-2025", 
+      habitName: "Gaming",
       completed: "Turu"
     }
     const inputStyles = {
@@ -44,7 +43,7 @@ function ShowHabits() {  // Capitalized component name
   
     return(
       <div>
-        <input placeholder={`email:${habit.email} name:${habit.habitName} date:${habit.date}  completed:${habit.completed}`} style={inputStyles}/>
+        <input placeholder={`email:${habit.email} name:${habit.habitName} completed:${habit.completed}`} style={inputStyles}/>
         <button onClick={handleSubmit}>Click</button>
       </div>
     )

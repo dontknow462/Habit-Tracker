@@ -6,6 +6,7 @@ import Guest from './navbar/guest';
 import AuthUser from './components/AuthUser.js';
 import Auth from './navbar/auth';
 import HabitTable from './components/HabitTable.js';
+import Thome from './components/Thome.js';
 // frontend/src/components/AuthUser.js
 
 function App() {
@@ -18,7 +19,12 @@ function App() {
   );
 }
 
-
+// function App() {
+ 
+//   return (
+//       <Thome/>
+//   );
+// }
 
 
 export default App;
