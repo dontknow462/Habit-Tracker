@@ -61,7 +61,7 @@ function Thome() {
     }, [bool]);
 
     const fetchHabits = () => {/// Need to make this dynamic. Now this only gives userid 2 data. if anoither logged in it will not give anything
-        http.get('/users/2/habits').then(response => {
+        http.get('/users/1/habits').then(response => {
             console.log(response.data);
             seGetHabs(response.data)
         })
@@ -104,18 +104,33 @@ function Thome() {
                         so thats its more dynamic 
                         */}
                         <button onClick={() => handleDelete(item.id)}>Delete</button>
-                        {item.logs.map(log => (
-                            <div>
-                                <li key={log.id}>Completed: {log.completed}}</li>
-                                <input type="checkbox" />
-                                <li key={log.id}>Date: {log.date}</li>
+
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th key={item.id}>{item.habitName}</th>
+                                <th>Completed</th>
+                            </tr>
+                        
+                            </thead>
+                            <tbody>
+                            {item.logs.map(log => (
+                            <tr>
+                                {/* <input type="checkbox" /> */}
+                                <td key={log.id}> {log.date}</td>
+                                <td key={log.id}> {log.completed}</td>
+                                <td>idk</td>
 
 
 
-                            </div>
+
+                            </tr>
                         ))}
+                            </tbody>
+                      
 
-
+                        </table>
 
 
                     </div>
