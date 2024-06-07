@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import AuthUser from './AuthUser';
 import axios from 'axios';
+import moment from 'moment';
+
 
 
 
@@ -8,6 +10,14 @@ import axios from 'axios';
 function Thome() {
 
     const { http, token, user } = AuthUser();
+
+    console.log(user);
+    console.log(http);
+
+
+   const curentDate = moment().format('YYYY-MM-DD');
+    console.log(curentDate);
+
 
 
     const [habit, setHabit] = useState("")
@@ -61,7 +71,7 @@ function Thome() {
     }, [bool]);
 
     const fetchHabits = () => {/// Need to make this dynamic. Now this only gives userid 2 data. if anoither logged in it will not give anything
-        http.get('/users/1/habits').then(response => {
+        http.get(`/users/${user.id}/habits`).then(response => {
             console.log(response.data);
             seGetHabs(response.data)
         })
