@@ -15,7 +15,7 @@ function Thome() {
     console.log(http);
 
 
-   const curentDate = moment().format('YYYY-MM-DD');
+   const curentDate = moment().format('DD-MM-YYYY');
     console.log(curentDate);
 
 

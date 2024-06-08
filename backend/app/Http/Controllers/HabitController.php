@@ -9,6 +9,7 @@ use App\Models\HabitLog;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\dd;
 
 class HabitController extends Controller
@@ -22,15 +23,37 @@ class HabitController extends Controller
 
     }
 
-    public function getUserHabits($userId)
+    public function getUserHabits($userId )
     {
-        $user = User::where('id', $userId)->firstOrFail();
-        $habits= $user->habits()    //recalling the habits function which contains "User has many habits" in User Model
-        ->select('id', 'user_id', 'habitName')
-        ->with('logs:id,habit_id,date,completed,created_at,updated_at') // this Some how calls the logs function in Habit Model
+        // $user = User::where('id', $userId)->firstOrFail();
+        // $habits= $user->habits()    //recalling the habits function which contains "User has many habits" in User Model
+        // ->select('id', 'user_id', 'habitName')
+        // ->with('logs:id,habit_id,date,completed,created_at,updated_at') // this Some how calls the logs function in Habit Model
+        // ->get();
+        
+        $userIsd = Auth::id();
+
+
+
+        $year =2024; 
+        $month = 05;
+
+        $habits = DB::table('table_habit')
+        ->join('habit_logs', 'table_habit.id', '=', 'habit_logs.habit_id')
+        ->where('table_habit.user_id', $userId)
+        ->whereYear('habit_logs.date', $year)
+        ->whereMonth('habit_logs.date', $month)
+        ->select('table_habit.habitName', 'habit_logs.date', 'habit_logs.completed')
         ->get();
 
-        return response()->json($habits);
+        dd($habits);
+
+        dump('hello');
+        // dd($habits);
+
+        // return response()->json($habits);
+        return response($habits);
+
     }
 
     public function createAndLog(Request $request)
