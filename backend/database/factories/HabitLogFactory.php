@@ -18,7 +18,7 @@ class HabitLogFactory extends Factory
 
 
         return [
-            'date'=>$this->faker->dateTimeBetween('2024-03-01', '2024-05-29')->format('Y-m-d'),
+            'date'=>$this->faker->dateTimeBetween('2024-03-01', '2024-03-29')->format('Y-m-d'),
             'completed'=>$this->faker->boolean,
         ];
     }
