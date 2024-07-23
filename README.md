@@ -17,4 +17,5 @@
   - Users can leave a short journal entry for each day.
 
 
--Testing
+- **Reminder:**
+  - Users can be reminded to do tasks
